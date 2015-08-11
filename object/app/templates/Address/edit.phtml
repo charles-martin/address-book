@@ -1,0 +1,48 @@
+<?php /** @var Address $address */ ?>
+<form action="/address/save/<?php echo $address->id ?: 0; ?>" method="post">
+    <table style="width: 100%;">
+        <tr>
+            <th>Name</th>
+            <td><input type="text" name="name" value="<?php echo $address->name; ?>" /></td>
+        </tr>
+        <tr><td colspan="2">Address</td></tr>
+        <tr>
+            <th>Street</th>
+            <td><input type="text" name="street" value="<?php echo $address->street; ?>" /></td>
+        </tr>
+        <tr>
+            <th>City</th>
+            <td><input type="text" name="city" value="<?php echo $address->city; ?>" /></td>
+        </tr>
+        <tr>
+            <th>State</th>
+            <td><input type="text" name="state" value="<?php echo $address->state; ?>" /></td>
+        </tr>
+        <tr>
+            <th>Zip</th>
+            <td><input type="text" name="zip" value="<?php echo $address->zip; ?>" /></td>
+        </tr>
+        <tr><td colspan="2">Contact</td></tr>
+        <tr>
+            <th>Phone #</th>
+            <td><input type="text" name="phone" value="<?php echo $address->phone; ?>" /></td>
+        </tr>
+        <tr>
+            <th>Cell #</th>
+            <td><input type="text" name="cell" value="<?php echo $address->cell; ?>" /></td>
+        </tr>
+        <tr>
+            <th>Fax #</th>
+            <td><input type="text" name="fax" value="<?php echo $address->fax; ?>" /></td>
+        </tr>
+        <tr>
+            <th>E-Mail</th>
+            <td><input type="text" name="email" value="<?php echo $address->email; ?>" /></td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <input type="submit" value="Save" />
+            </td>
+        </tr>
+    </table>
+</form>

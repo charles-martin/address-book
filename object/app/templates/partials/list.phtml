@@ -1,0 +1,49 @@
+<table>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>E-Mail</th>
+            <th>City</th>
+            <th>State</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td colspan="5">
+                <form method="get" action="/address/search/">
+                    <input type="text" name="search" value="<?php echo isset($_GET['search']) ? htmlentities($_GET['search']) : ''; ?>" />
+                    <input type="submit" value="Search" />
+                </form>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="5">
+                <a href="/address/add/">Add New</a>
+            </td>
+        </tr>
+        <?php
+            $pageinate = new Phalcon\Paginator\Adapter\Model(['data' => $results, 'page' => $page ?: 1, 'limit' => 5]);
+            $pageinate = $pageinate->getPaginate();
+        ?>
+        <?php foreach($pageinate->items as $address): ?>
+            <tr>
+                <td><a href="/address/details/<?php echo $address->id; ?>"><?php echo $address->name; ?></a></td>
+                <td><a href="mailto:<?php echo $address->email; ?>"><?php echo $address->email; ?></a></td>
+                <td><?php echo $address->city; ?></td>
+                <td><?php echo $address->state; ?></td>
+                <td>
+                    <ul class="actions">
+                        <li><a href="/address/edit/<?php echo $address->id; ?>">Edit</a></li>
+                        <li><a href="/address/delete/<?php echo $address->id; ?>" onClick="return confirm('Are you sure?');">Delete</a></li>
+                    </ul>
+                </td>
+            </tr>
+        <?php endforeach; ?>
+        <tr>
+            <td colspan="4">
+                <?php $this->partial("partials/paging", ['page' => $pageinate, 'url' => $url]); ?>
+            </td>
+        </tr>
+    </tbody>
+</table>

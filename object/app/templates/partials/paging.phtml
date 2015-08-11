@@ -1,0 +1,9 @@
+<ul>
+    <?php for($i = 1; $i <= $page->last; $i++): ?>
+        <?php if ($i === $page->current): ?>
+                <li>[<?php echo $i; ?>]</li>
+            <?php else: ?>
+                <li><a href="<?php echo str_replace('{page}', $i, $url); ?>">[<?php echo $i; ?>]</a></li>
+            <?php endif; ?>
+    <?php endfor; ?>
+</ul>
